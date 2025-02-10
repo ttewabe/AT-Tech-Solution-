@@ -16,24 +16,27 @@ import WallPaperImage from '../../../assets/wallpaper.jpg';
 import EducationIcon from '../../../assets/education-icon.png';
 import AppDevelopmentIcon from '../../../assets/app-development-icon.png';
 import MobileDevelopmentIcon from '../../../assets/mobile-development-icon.jpg';
+import clientImage1 from '../../../assets/client-graph.jpg';
+import clientImage2 from '../../../assets/client-buildings.jpg';
 import { FaAngleRight } from 'react-icons/fa';
 import ChartComponent from '../../charts/ChartComponent';
+import { Carousel } from '../../carousel/Carousel';
 
 const services = [
     {
         icon: AppDevelopmentIcon,
         title: 'Web Development',
-        description: 'Custom websites and web applications',
+        description: ['Custom websites and web applications'],
     },
     {
         icon: MobileDevelopmentIcon,
         title: 'Application Development',
-        description: 'Mobile and Desktop applications',
+        description: ['Mobile and Desktop applications'],
     },
     {
         icon: EducationIcon,
         title: 'Educational Services',
-        description: 'Coding classes for all ages',
+        description: ['Coding classes for all ages'],
     },
 ];
 
@@ -71,20 +74,21 @@ const featuredProjects = [
 const skills = [
     {
         title: 'Programming Languages',
-        description:
+        description: [
             'Expertise in multiple programming languages including JavaScript, TypeScript, Python',
+        ],
     },
     {
         title: 'UI/UX Design',
-        description: 'Creating intuitive and responsive user interfaces',
+        description: ['Creating intuitive and responsive user interfaces'],
     },
     {
         title: 'Application Development',
-        description: 'Full-stack development for web and mobile applications',
+        description: ['Full-stack development for web and mobile applications'],
     },
     {
         title: 'Social Service Expertise',
-        description: 'Community engagement and social impact solutions',
+        description: ['Community engagement and social impact solutions'],
     },
 ];
 
@@ -110,6 +114,25 @@ const skillsData = {
         },
     ],
 };
+
+const testimonials = [
+    {
+        title: 'Happy HR Management',
+        description: [
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus et felis.',
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus et felis.',
+        ],
+        image: clientImage1,
+    },
+    {
+        title: 'Global Tours',
+        description: [
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus et felis.',
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus et felis.',
+        ],
+        image: clientImage2,
+    },
+];
 
 const HomeContent: React.FC = () => {
     return (
@@ -149,9 +172,13 @@ const HomeContent: React.FC = () => {
                             </ServiceCardIcon>
                             <h4>{service.title}</h4>
                             <p>{service.description}</p>
+                            {service.description.map((desc) => (
+                                <p key={desc}>{desc}</p>
+                            ))}
                         </ServiceCard>
                     ))}
                 </ServicesGrid>
+                <Carousel items={skills} />
             </AboutSection>
             <AboutSection key={'featured-projects'}>
                 <h1>Featured Projects</h1>
@@ -174,6 +201,7 @@ const HomeContent: React.FC = () => {
                         </ServiceCard>
                     ))}
                 </ServicesGrid>
+                <Carousel items={featuredProjects} />
             </AboutSection>
             <AboutSection key="skill-knowledge">
                 <h1>Our Skills and Knowledge</h1>
@@ -186,11 +214,24 @@ const HomeContent: React.FC = () => {
                     {skills.map((skill, index) => (
                         <ServiceCard key={index}>
                             <h4>{skill.title}</h4>
-                            <p>{skill.description}</p>
+                            {skill.description.map((desc) => (
+                                <p key={desc}>{desc}</p>
+                            ))}
                         </ServiceCard>
                     ))}
                 </ServicesGrid>
+                <Carousel items={skills} />
                 <ChartComponent data={skillsData} />
+            </AboutSection>
+            <AboutSection key="testimonials">
+                <h1>Testimonials</h1>
+                <p>See what our clients have to say about us</p>
+                <Carousel
+                    items={testimonials}
+                    className="always-visible"
+                    showButton={false}
+                    useTitleCard={false}
+                />
             </AboutSection>
         </MainContent>
     );

@@ -34,6 +34,8 @@ const services = [
     'Application Development',
 ];
 
+const navItems = ['Home', 'Services', 'Portfolio', 'About', 'Contact Us'];
+
 const socialMediaIcons = [
     { Icon: FaFacebook, size: 20 },
     { Icon: FaInstagram, size: 20 },
@@ -63,11 +65,21 @@ const SlideDrawer: React.FC<{
                     <Logo>AT Tech</Logo>
                 </DropdownLogoContainer>
                 <DropdownContentContainer>
-                    <DropdownList>
+                    <DropdownList className="services-nav">
                         {services.map((service, index) => (
                             <DropdownListItem key={index}>
                                 <DropdownListItemDiv>
                                     {service}
+                                    <FaAngleRight />
+                                </DropdownListItemDiv>
+                            </DropdownListItem>
+                        ))}
+                    </DropdownList>
+                    <DropdownList className="slide-drawer-nav">
+                        {navItems.map((navItem, index) => (
+                            <DropdownListItem key={index}>
+                                <DropdownListItemDiv>
+                                    {navItem}
                                     <FaAngleRight />
                                 </DropdownListItemDiv>
                             </DropdownListItem>

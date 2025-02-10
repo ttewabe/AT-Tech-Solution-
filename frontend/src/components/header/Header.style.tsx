@@ -8,6 +8,7 @@ export const HeaderContainer = styled.header`
     background-color: #003366;
     color: white;
     padding: 0.4rem 0.8rem 1.2rem 1.2rem;
+    overflow-x: hidden;
 `;
 
 export const HeaderMainLine = styled.div`
@@ -18,6 +19,10 @@ export const HeaderMainLine = styled.div`
     padding-right: 20px;
     font-family: Arial, sans-serif;
     gap: 30px;
+
+    @media (max-width: 768px) {
+        align-items: flex-start;
+    }
 `;
 
 export const Logo = styled.div`
@@ -50,6 +55,15 @@ export const HeaderNavitems = styled.div`
             color: white;
         }
     }
+
+    @media (max-width: 1024px) {
+        gap: 60px;
+        margin-right: 10%;
+    }
+
+    @media (max-width: 768px) {
+        display: none;
+    }
 `;
 
 export const ContactInfo = styled.div`
@@ -62,6 +76,13 @@ export const ContactInfo = styled.div`
 
     span {
         font-size: 12px;
+    }
+
+    @media (max-width: 550px) {
+        flex-direction: column;
+        margin-left: 10px;
+        align-items: flex-start;
+        gap: 5px;
     }
 `;
 
@@ -122,7 +143,25 @@ export const DropdownMenuContent = styled.div`
     scrollbar-width: none; /* Firefox */
 `;
 
-export const DropdownContentContainer = styled.div``;
+export const DropdownContentContainer = styled.div`
+    .slide-drawer-nav {
+        display: none;
+    }
+
+    .services-nav {
+        display: block;
+    }
+
+    @media (max-width: 768px) {
+        .slide-drawer-nav {
+            display: block;
+        }
+
+        .services-nav {
+            display: none;
+        }
+    }
+`;
 
 export const DropdownList = styled.ul`
     list-style: none;

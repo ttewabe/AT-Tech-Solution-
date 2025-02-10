@@ -12,26 +12,28 @@ const Footer: React.FC = () => {
         <FooterContainer>
             <FooterContent>
                 <FooterMain>
-                    <FooterElements>
-                        <h4>Quick Links</h4>
-                        <ul>
-                            <li>Services</li>
-                            <li>Portfolio</li>
-                            <li>About</li>
-                            <li>Contact</li>
-                        </ul>
-                    </FooterElements>
-                    <FooterElements>
-                        <h4>Socials</h4>
-                        <ul>
-                            <li>Facebook</li>
-                            <li>Instagram</li>
-                            <li>Twitter</li>
-                        </ul>
-                    </FooterElements>
+                    <div className="one-liner">
+                        <FooterElements>
+                            <h4>Quick Links</h4>
+                            <ul>
+                                <li>Services</li>
+                                <li>Portfolio</li>
+                                <li>About</li>
+                                <li>Contact</li>
+                            </ul>
+                        </FooterElements>
+                        <FooterElements>
+                            <h4>Socials</h4>
+                            <ul>
+                                <li>Facebook</li>
+                                <li>Instagram</li>
+                                <li>Twitter</li>
+                            </ul>
+                        </FooterElements>
+                    </div>
                     <FooterElements>
                         <h3>Newsletter</h3>
-                        <div>
+                        <div className="subscribe">
                             <input type="text" placeholder="Enter your Email" />
                             <button>Subscribe</button>
                         </div>
