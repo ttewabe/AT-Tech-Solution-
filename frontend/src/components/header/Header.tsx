@@ -36,20 +36,20 @@ export const Header: React.FC = () => {
                 </ContactInfo>
                 <HeaderDetails>
                     <HeaderNavitems>
-                        <span>
+                        <span onMouseEnter={() => setMenuDetailsOpen(false)}>
                             <Link to="/home">Home</Link>
                         </span>
                         <span onMouseEnter={() => setMenuDetailsOpen(true)}>
                             <Link to="/services">Services</Link>
                             <FaAngleDown />
                         </span>
-                        <span>
+                        <span onMouseEnter={() => setMenuDetailsOpen(false)}>
                             <Link to="/portfolio">Portfolio</Link>
                         </span>
-                        <span>
+                        <span onMouseEnter={() => setMenuDetailsOpen(false)}>
                             <Link to="/about">About</Link>
                         </span>
-                        <span>
+                        <span onMouseEnter={() => setMenuDetailsOpen(false)}>
                             <Link to="/contact">Contact Us</Link>
                         </span>
                     </HeaderNavitems>

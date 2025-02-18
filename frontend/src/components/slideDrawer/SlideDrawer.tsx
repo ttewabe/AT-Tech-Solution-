@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
     ContactList,
     DropdownContentContainer,
@@ -34,6 +35,8 @@ const services = [
     'Application Development',
 ];
 
+const navItems = ['Home', 'Services', 'Portfolio', 'About', 'Contact Us'];
+
 const socialMediaIcons = [
     { Icon: FaFacebook, size: 20 },
     { Icon: FaInstagram, size: 20 },
@@ -51,6 +54,14 @@ const contactInfo = [
 const SlideDrawer: React.FC<{
     setMenuOpen: (isOpen: boolean) => void;
 }> = ({ setMenuOpen }) => {
+    const navigate = useNavigate();
+    const handleNavClick = (
+        e: React.MouseEvent<HTMLLIElement>,
+        navigateTo: string
+    ): void => {
+        navigate(`/${navigateTo?.split(' ')[0]?.toLowerCase()}`);
+    };
+
     return (
         <DropdownMenu>
             <DropdownMenuContent>
@@ -63,11 +74,26 @@ const SlideDrawer: React.FC<{
                     <Logo>AT Tech</Logo>
                 </DropdownLogoContainer>
                 <DropdownContentContainer>
-                    <DropdownList>
+                    <DropdownList className="services-nav">
                         {services.map((service, index) => (
                             <DropdownListItem key={index}>
                                 <DropdownListItemDiv>
                                     {service}
+                                    <FaAngleRight />
+                                </DropdownListItemDiv>
+                            </DropdownListItem>
+                        ))}
+                    </DropdownList>
+                    <DropdownList className="slide-drawer-nav">
+                        {navItems.map((navItem, index) => (
+                            <DropdownListItem
+                                key={index}
+                                onClick={(e: React.MouseEvent<HTMLLIElement>) =>
+                                    handleNavClick(e, navItem)
+                                }
+                            >
+                                <DropdownListItemDiv>
+                                    {navItem}
                                     <FaAngleRight />
                                 </DropdownListItemDiv>
                             </DropdownListItem>

@@ -1,10 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import {
-    MainContent,
     WallPaper,
     CompanyMoto,
-    AboutSection,
     CustomButton,
     WallPaperButtons,
     ServicesGrid,
@@ -12,28 +11,38 @@ import {
     ServiceCardIcon,
     ProjectLink,
 } from './HomeContent.style';
+import {
+    MainWrapper,
+    Section,
+    SectionTitle,
+} from '../../commonStyledComponents/CommonStyledComponents.style';
+
 import WallPaperImage from '../../../assets/wallpaper.jpg';
 import EducationIcon from '../../../assets/education-icon.png';
 import AppDevelopmentIcon from '../../../assets/app-development-icon.png';
 import MobileDevelopmentIcon from '../../../assets/mobile-development-icon.jpg';
+import clientImage1 from '../../../assets/client-graph.jpg';
+import clientImage2 from '../../../assets/client-buildings.jpg';
 import { FaAngleRight } from 'react-icons/fa';
 import ChartComponent from '../../charts/ChartComponent';
+import { Carousel } from '../../carousel/Carousel';
+import { Testimonials } from '../../testimonials/Testimonials';
 
 const services = [
     {
         icon: AppDevelopmentIcon,
         title: 'Web Development',
-        description: 'Custom websites and web applications',
+        description: ['Custom websites and web applications'],
     },
     {
         icon: MobileDevelopmentIcon,
         title: 'Application Development',
-        description: 'Mobile and Desktop applications',
+        description: ['Mobile and Desktop applications'],
     },
     {
         icon: EducationIcon,
         title: 'Educational Services',
-        description: 'Coding classes for all ages',
+        description: ['Coding classes for all ages'],
     },
 ];
 
@@ -71,20 +80,21 @@ const featuredProjects = [
 const skills = [
     {
         title: 'Programming Languages',
-        description:
+        description: [
             'Expertise in multiple programming languages including JavaScript, TypeScript, Python',
+        ],
     },
     {
         title: 'UI/UX Design',
-        description: 'Creating intuitive and responsive user interfaces',
+        description: ['Creating intuitive and responsive user interfaces'],
     },
     {
         title: 'Application Development',
-        description: 'Full-stack development for web and mobile applications',
+        description: ['Full-stack development for web and mobile applications'],
     },
     {
         title: 'Social Service Expertise',
-        description: 'Community engagement and social impact solutions',
+        description: ['Community engagement and social impact solutions'],
     },
 ];
 
@@ -111,9 +121,28 @@ const skillsData = {
     ],
 };
 
+const testimonials = [
+    {
+        title: 'Happy HR Management',
+        description: [
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus et felis.',
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus et felis.',
+        ],
+        image: clientImage1,
+    },
+    {
+        title: 'Global Tours',
+        description: [
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus et felis.',
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus et felis.',
+        ],
+        image: clientImage2,
+    },
+];
+
 const HomeContent: React.FC = () => {
     return (
-        <MainContent>
+        <MainWrapper>
             <WallPaper $backgroundimage={WallPaperImage}>
                 <CompanyMoto>
                     <h1>Empowering Ideas With Code</h1>
@@ -124,13 +153,17 @@ const HomeContent: React.FC = () => {
                         educational services.
                     </p>
                     <WallPaperButtons>
-                        <CustomButton>View Portfolio</CustomButton>
-                        <CustomButton>Contact Us</CustomButton>
+                        <Link to={'/portfolio'}>
+                            <CustomButton>View Portfolio</CustomButton>
+                        </Link>
+                        <Link to={'/contact'}>
+                            <CustomButton>Contact Us</CustomButton>
+                        </Link>
                     </WallPaperButtons>
                 </CompanyMoto>
             </WallPaper>
-            <AboutSection key={'about-us'}>
-                <h1>About AT Tech Solutions</h1>
+            <Section key={'about-us'}>
+                <SectionTitle>About AT Tech Solutions</SectionTitle>
                 <p>
                     Founded by passionate software engineers in March 2023,
                     Dream Soft has rapidly evolved into a comprehensive
@@ -140,7 +173,9 @@ const HomeContent: React.FC = () => {
                     and social services to deliver comprehensive solutions that
                     make a real difference.
                 </p>
-                <CustomButton>Meet the Team</CustomButton>
+                <Link to={'/about'}>
+                    <CustomButton>Meet the Team</CustomButton>
+                </Link>
                 <ServicesGrid>
                     {services.map((service, index) => (
                         <ServiceCard key={index}>
@@ -149,12 +184,16 @@ const HomeContent: React.FC = () => {
                             </ServiceCardIcon>
                             <h4>{service.title}</h4>
                             <p>{service.description}</p>
+                            {service.description.map((desc) => (
+                                <p key={desc}>{desc}</p>
+                            ))}
                         </ServiceCard>
                     ))}
                 </ServicesGrid>
-            </AboutSection>
-            <AboutSection key={'featured-projects'}>
-                <h1>Featured Projects</h1>
+                <Carousel items={skills} />
+            </Section>
+            <Section key={'featured-projects'}>
+                <SectionTitle>Featured Projects</SectionTitle>
                 <p>Explore some of our recent work and success stories</p>
                 <ServicesGrid className="featured-projects">
                     {featuredProjects.map((project, index) => (
@@ -174,9 +213,10 @@ const HomeContent: React.FC = () => {
                         </ServiceCard>
                     ))}
                 </ServicesGrid>
-            </AboutSection>
-            <AboutSection key="skill-knowledge">
-                <h1>Our Skills and Knowledge</h1>
+                <Carousel items={featuredProjects} />
+            </Section>
+            <Section key="skill-knowledge">
+                <SectionTitle>Our Skills and Knowledge</SectionTitle>
                 <p>
                     Our team combines extensive expertise in coding, teaching,
                     and social services to deliver comprehensive solutions that
@@ -186,13 +226,17 @@ const HomeContent: React.FC = () => {
                     {skills.map((skill, index) => (
                         <ServiceCard key={index}>
                             <h4>{skill.title}</h4>
-                            <p>{skill.description}</p>
+                            {skill.description.map((desc) => (
+                                <p key={desc}>{desc}</p>
+                            ))}
                         </ServiceCard>
                     ))}
                 </ServicesGrid>
+                <Carousel items={skills} />
                 <ChartComponent data={skillsData} />
-            </AboutSection>
-        </MainContent>
+            </Section>
+            <Testimonials testimonials={testimonials} />
+        </MainWrapper>
     );
 };
 

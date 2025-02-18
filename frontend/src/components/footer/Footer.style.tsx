@@ -5,6 +5,7 @@ export const FooterContainer = styled.footer`
     position: relative;
     bottom: 0;
     width: 100%;
+    overflow: hidden;
 `;
 
 export const FooterContent = styled.div`
@@ -16,13 +17,42 @@ export const FooterContent = styled.div`
 
 export const FooterMain = styled.div`
     display: flex;
-    height: 15rem;
+    min-height: 15rem;
+    padding-bottom: 30px;
     background-color: #eeeeee;
     width: 100%;
     padding-right: 1.5rem;
     box-sizing: border-box;
     justify-content: space-between;
     align-items: center;
+
+    .one-liner {
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        gap: 10rem;
+        width: 100%;
+    }
+
+    @media (max-width: 800px) {
+        .one-liner {
+            padding: 0 1rem;
+            justify-content: left;
+            gap: 3rem;
+        }
+    }
+
+    @media (max-width: 600px) {
+        display: flex;
+        flex-direction: column;
+
+        .one-liner {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 0 3rem;
+        }
+    }
 `;
 
 export const FooterElements = styled.div`
@@ -68,6 +98,38 @@ export const FooterElements = styled.div`
         &:hover {
             background-color: #114477;
             scale: 1.05;
+        }
+    }
+
+    .subscribe {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    @media (max-width: 800px) {
+        .subscribe {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .subscribe {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+    }
+
+    @media (max-width: 400px) {
+        .subscribe {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
     }
 `;
