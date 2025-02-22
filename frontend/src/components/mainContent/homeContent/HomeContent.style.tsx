@@ -11,6 +11,18 @@ export const WallPaper = styled.div<WallPaperProps>`
     background-image: url(${(props) => props.$backgroundimage});
     background-size: cover;
     background-position: center;
+
+    @media (max-width: 480px) {
+        min-height: 80dvh;
+    }
+
+    @media (max-width: 400px) {
+        min-height: 90dvh;
+    }
+
+    @media (max-width: 300px) {
+        min-height: 100dvh;
+    }
 `;
 
 export const CompanyMoto = styled.div`
@@ -94,66 +106,5 @@ export const ServicesGrid = styled.div`
 
     @media (max-width: 1024px) {
         display: none;
-    }
-`;
-
-export const ServiceCard = styled.div`
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    align-items: center;
-    background: var(--darker);
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    border: 1px solid #b8860b;
-    position: relative;
-    overflow: hidden;
-    padding-bottom: 4rem;
-
-    .title-card {
-        height: 1rem;
-    }
-
-    h4 {
-        margin: 0;
-    }
-
-    p {
-        font-size: 14px;
-        width: 100%;
-    }
-`;
-
-export const ServiceCardIcon = styled.div`
-    width: 40px;
-    height: 40px;
-    text-align: center;
-    padding: 10px;
-    color: #444444;
-
-    img {
-        width: 100%;
-        height: 100%;
-    }
-`;
-
-export const ProjectLink = styled.div`
-    position: absolute;
-    bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 1rem;
-    cursor: pointer;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    background-color: #eeeeee;
-
-    &:hover {
-        scale: 1.05;
-        transition: all 0.3s ease;
-        background-color: #dddddd;
     }
 `;
