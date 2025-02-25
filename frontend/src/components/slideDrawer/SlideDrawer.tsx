@@ -28,11 +28,11 @@ import {
 import { FaXmark, FaEnvelope } from 'react-icons/fa6';
 
 const services = [
-    'Website Development',
-    'Social Services',
-    'Business Card Development',
-    'Teaching Coding',
-    'Application Development',
+    { title: 'Website Development', link: 'software-development' },
+    { title: 'Application Development', link: 'software-development' },
+    { title: 'Software Maintenance', link: 'software-development' },
+    { title: 'Teaching Coding', link: 'education-services' },
+    { title: 'Social Services', link: 'other-services' },
 ];
 
 const navItems = ['Home', 'Services', 'Portfolio', 'About', 'Contact Us'];
@@ -50,7 +50,6 @@ const contactInfo = [
     { Icon: FaEnvelope, text: 'Email: info@attechsolution.com', size: 40 },
 ];
 
-// Let's take out the dropdown menu from the header and make it a separate component in this file
 const SlideDrawer: React.FC<{
     setMenuOpen: (isOpen: boolean) => void;
 }> = ({ setMenuOpen }) => {
@@ -60,6 +59,13 @@ const SlideDrawer: React.FC<{
         navigateTo: string
     ): void => {
         navigate(`/${navigateTo?.split(' ')[0]?.toLowerCase()}`);
+    };
+
+    const handleServiceClick = (
+        e: React.MouseEvent<HTMLLIElement>,
+        link: string
+    ): void => {
+        navigate(`/services#${link}`);
     };
 
     return (
@@ -76,9 +82,14 @@ const SlideDrawer: React.FC<{
                 <DropdownContentContainer>
                     <DropdownList className="services-nav">
                         {services.map((service, index) => (
-                            <DropdownListItem key={index}>
+                            <DropdownListItem
+                                key={index}
+                                onClick={(e: React.MouseEvent<HTMLLIElement>) =>
+                                    handleServiceClick(e, service.link)
+                                }
+                            >
                                 <DropdownListItemDiv>
-                                    {service}
+                                    {service.title}
                                     <FaAngleRight />
                                 </DropdownListItemDiv>
                             </DropdownListItem>

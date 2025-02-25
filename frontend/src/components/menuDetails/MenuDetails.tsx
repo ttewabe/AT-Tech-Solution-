@@ -1,3 +1,4 @@
+import React from 'react';
 import {
     MenuDetailsContainer,
     MenuDetailsItem,
@@ -5,29 +6,40 @@ import {
     MenuDetailsItemContent,
     MenuDetailsItemContentItem,
 } from './MenuDetails.style';
+import { useNavigate } from 'react-router-dom';
 
 interface MenuDetailsProps {
     setMenuDetailsOpen: (isOpen: boolean) => void;
 }
 
 const MenuDetails: React.FC<MenuDetailsProps> = ({ setMenuDetailsOpen }) => {
+    const navigate = useNavigate();
+
+    const navigateToSection = (hash: string) => {
+        navigate(`/services${hash}`);
+    };
+
     return (
         <MenuDetailsContainer onMouseEnter={() => setMenuDetailsOpen(true)}>
-            <MenuDetailsItem>
-                <MenuDetailsTitle>Software Developement</MenuDetailsTitle>
+            <MenuDetailsItem
+                onClick={() => navigateToSection('#software-development')}
+            >
+                <MenuDetailsTitle>Software Development</MenuDetailsTitle>
                 <MenuDetailsItemContent>
                     <MenuDetailsItemContentItem>
-                        Web Developement
+                        Web Development
                     </MenuDetailsItemContentItem>
                     <MenuDetailsItemContentItem>
-                        Mobile Developement
+                        Mobile Development
                     </MenuDetailsItemContentItem>
                     <MenuDetailsItemContentItem>
                         Software Maintenance
                     </MenuDetailsItemContentItem>
                 </MenuDetailsItemContent>
             </MenuDetailsItem>
-            <MenuDetailsItem>
+            <MenuDetailsItem
+                onClick={() => navigateToSection('#education-services')}
+            >
                 <MenuDetailsTitle>Education Services</MenuDetailsTitle>
                 <MenuDetailsItemContent>
                     <MenuDetailsItemContentItem>
@@ -41,7 +53,9 @@ const MenuDetails: React.FC<MenuDetailsProps> = ({ setMenuDetailsOpen }) => {
                     </MenuDetailsItemContentItem>
                 </MenuDetailsItemContent>
             </MenuDetailsItem>
-            <MenuDetailsItem>
+            <MenuDetailsItem
+                onClick={() => navigateToSection('#other-services')}
+            >
                 <MenuDetailsTitle>Other Services</MenuDetailsTitle>
                 <MenuDetailsItemContent>
                     <MenuDetailsItemContentItem>

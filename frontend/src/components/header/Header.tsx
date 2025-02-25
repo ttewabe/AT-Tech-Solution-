@@ -12,9 +12,10 @@ import {
 import SlideDrawer from '../slideDrawer/SlideDrawer';
 import MenuDetails from '../menuDetails/MenuDetails';
 import { FaAngleDown } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export const Header: React.FC = () => {
+    const location = useLocation();
     const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
     const [isMenuDetailsOpen, setMenuDetailsOpen] = useState<boolean>(false);
 
@@ -26,6 +27,8 @@ export const Header: React.FC = () => {
         }
     };
 
+    const isActive = (path: string) => location.pathname === path;
+
     return (
         <HeaderContainer onMouseLeave={() => setMenuDetailsOpen(false)}>
             <Logo>AT Tech</Logo>
@@ -36,20 +39,35 @@ export const Header: React.FC = () => {
                 </ContactInfo>
                 <HeaderDetails>
                     <HeaderNavitems>
-                        <span onMouseEnter={() => setMenuDetailsOpen(false)}>
+                        <span
+                            className={isActive('/home') ? 'active' : ''}
+                            onMouseEnter={() => setMenuDetailsOpen(false)}
+                        >
                             <Link to="/home">Home</Link>
                         </span>
-                        <span onMouseEnter={() => setMenuDetailsOpen(true)}>
+                        <span
+                            className={isActive('/services') ? 'active' : ''}
+                            onMouseEnter={() => setMenuDetailsOpen(true)}
+                        >
                             <Link to="/services">Services</Link>
                             <FaAngleDown />
                         </span>
-                        <span onMouseEnter={() => setMenuDetailsOpen(false)}>
+                        <span
+                            className={isActive('/portfolio') ? 'active' : ''}
+                            onMouseEnter={() => setMenuDetailsOpen(false)}
+                        >
                             <Link to="/portfolio">Portfolio</Link>
                         </span>
-                        <span onMouseEnter={() => setMenuDetailsOpen(false)}>
+                        <span
+                            className={isActive('/about') ? 'active' : ''}
+                            onMouseEnter={() => setMenuDetailsOpen(false)}
+                        >
                             <Link to="/about">About</Link>
                         </span>
-                        <span onMouseEnter={() => setMenuDetailsOpen(false)}>
+                        <span
+                            className={isActive('/contact') ? 'active' : ''}
+                            onMouseEnter={() => setMenuDetailsOpen(false)}
+                        >
                             <Link to="/contact">Contact Us</Link>
                         </span>
                     </HeaderNavitems>
