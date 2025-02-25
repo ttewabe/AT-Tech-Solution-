@@ -7,26 +7,25 @@ import {
     CustomButton,
     WallPaperButtons,
     ServicesGrid,
-    ServiceCard,
-    ServiceCardIcon,
-    ProjectLink,
 } from './HomeContent.style';
 import {
     MainWrapper,
     Section,
     SectionTitle,
+    Card,
+    CardIcon,
+    CardLink,
 } from '../../commonStyledComponents/CommonStyledComponents.style';
 
 import WallPaperImage from '../../../assets/wallpaper.jpg';
 import EducationIcon from '../../../assets/education-icon.png';
 import AppDevelopmentIcon from '../../../assets/app-development-icon.png';
 import MobileDevelopmentIcon from '../../../assets/mobile-development-icon.jpg';
-import clientImage1 from '../../../assets/client-graph.jpg';
-import clientImage2 from '../../../assets/client-buildings.jpg';
 import { FaAngleRight } from 'react-icons/fa';
 import ChartComponent from '../../charts/ChartComponent';
 import { Carousel } from '../../carousel/Carousel';
 import { Testimonials } from '../../testimonials/Testimonials';
+import { testimonials } from '../../../commonData/data';
 
 const services = [
     {
@@ -121,25 +120,6 @@ const skillsData = {
     ],
 };
 
-const testimonials = [
-    {
-        title: 'Happy HR Management',
-        description: [
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus et felis.',
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus et felis.',
-        ],
-        image: clientImage1,
-    },
-    {
-        title: 'Global Tours',
-        description: [
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus et felis.',
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus et felis.',
-        ],
-        image: clientImage2,
-    },
-];
-
 const HomeContent: React.FC = () => {
     return (
         <MainWrapper>
@@ -178,16 +158,15 @@ const HomeContent: React.FC = () => {
                 </Link>
                 <ServicesGrid>
                     {services.map((service, index) => (
-                        <ServiceCard key={index}>
-                            <ServiceCardIcon>
+                        <Card key={index}>
+                            <CardIcon>
                                 <img alt="" src={service.icon} />
-                            </ServiceCardIcon>
+                            </CardIcon>
                             <h4>{service.title}</h4>
-                            <p>{service.description}</p>
                             {service.description.map((desc) => (
                                 <p key={desc}>{desc}</p>
                             ))}
-                        </ServiceCard>
+                        </Card>
                     ))}
                 </ServicesGrid>
                 <Carousel items={skills} />
@@ -197,20 +176,17 @@ const HomeContent: React.FC = () => {
                 <p>Explore some of our recent work and success stories</p>
                 <ServicesGrid className="featured-projects">
                     {featuredProjects.map((project, index) => (
-                        <ServiceCard
-                            key={index}
-                            className="featured-project-card"
-                        >
-                            <ServiceCard className="title-card">
+                        <Card key={index} className="featured-project-card">
+                            <Card className="title-card">
                                 <h4>{project.title}</h4>
-                            </ServiceCard>
+                            </Card>
                             {project.description.map((desc, i) => (
                                 <p key={i}>{desc}</p>
                             ))}
-                            <ProjectLink>
+                            <CardLink>
                                 View Project <FaAngleRight />
-                            </ProjectLink>
-                        </ServiceCard>
+                            </CardLink>
+                        </Card>
                     ))}
                 </ServicesGrid>
                 <Carousel items={featuredProjects} />
@@ -224,18 +200,24 @@ const HomeContent: React.FC = () => {
                 </p>
                 <ServicesGrid>
                     {skills.map((skill, index) => (
-                        <ServiceCard key={index}>
+                        <Card key={index}>
                             <h4>{skill.title}</h4>
                             {skill.description.map((desc) => (
                                 <p key={desc}>{desc}</p>
                             ))}
-                        </ServiceCard>
+                        </Card>
                     ))}
                 </ServicesGrid>
                 <Carousel items={skills} />
                 <ChartComponent data={skillsData} />
             </Section>
-            <Testimonials testimonials={testimonials} />
+            <Testimonials
+                testimonials={testimonials.map((testimonial) => ({
+                    title: testimonial.company,
+                    description: [testimonial.quote, testimonial.author],
+                    image: testimonial.image,
+                }))}
+            />
         </MainWrapper>
     );
 };

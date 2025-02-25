@@ -54,6 +54,11 @@ export const HeaderNavitems = styled.div`
             text-decoration: none;
             color: white;
         }
+
+        &.active {
+            font-weight: bold;
+            border-bottom: 2px solid white;
+        }
     }
 
     @media (max-width: 1024px) {

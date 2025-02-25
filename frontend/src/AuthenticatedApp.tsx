@@ -11,6 +11,7 @@ const AuthenticatedApp: React.FC = () => {
     return (
         <Routes>
             <Route path="" element={<HeaderProvider />}>
+                <Route path="/" element={<HomeContent />} />
                 <Route path="home" element={<HomeContent />} />
                 <Route path="services" element={<Services />} />
                 <Route path="portfolio" element={<Portfolio />} />
